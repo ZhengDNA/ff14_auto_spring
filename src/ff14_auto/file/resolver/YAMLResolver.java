@@ -19,7 +19,6 @@ public class YAMLResolver implements FileResolver {
     }
 
     @Override
-    public MusicEntity resolve(File file) {
-        return null;
+    public void resolve(File file) {
     }
 }
