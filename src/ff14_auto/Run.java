@@ -1,7 +1,7 @@
 package ff14_auto;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+
 
 
 /**
@@ -11,10 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Run {
-    public static void main(String[] args) {
-        ApplicationContext context=new AppConfig().config();
-        for (String name :context.getBeanDefinitionNames()){
-            System.out.println(name);
-        }
+    public static void main(String[] args){
+        App.config().getBean("app",App.class).run();
     }
 }
