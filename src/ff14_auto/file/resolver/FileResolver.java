@@ -14,5 +14,5 @@ public interface FileResolver {
 
     boolean check(char firstChar);
 
-    MusicEntity resolve(File file) throws Exception;
+    void resolve(File file) throws Exception;
 }
