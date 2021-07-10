@@ -24,17 +24,6 @@ public class FileLoader {
         this.resolvers = resolvers;
     }
 
-    public void printSth(String a) {
-        System.out.println(a);
-    }
-
-    public void printSth() {
-        assert resolvers != null;
-        for (FileResolver fileResolver : resolvers) {
-            System.out.println(fileResolver);
-        }
-    }
-
     public void load(String path) throws Exception {
         File file = new File(path);
         if (!file.exists()) {
