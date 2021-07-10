@@ -12,37 +12,45 @@ import java.util.List;
 
 @Component
 public class MusicEntity {
-    private List<NoteEntity> nodes;
+    private List<NoteEntity> notes;
 
-    private int BPM;
+    public static final int SLEEP = -1;
 
-    private int pitch;
+    public static final int BPM = 60000;
+
+    private int bpm;
+
+    private int clef;
 
     public void init() {
-        nodes = new ArrayList<>();
-    }
-
-    public List<NoteEntity> getNodes() {
-        return nodes;
+        notes = new ArrayList<>();
     }
 
     public boolean ready() {
-        return nodes != null && nodes.size() != 0;
+        return notes != null && notes.size() != 0;
     }
 
-    public int getBPM() {
-        return BPM;
+    public void addNote(NoteEntity noteEntity){
+        notes.add(noteEntity);
     }
 
-    public void setBPM(int BPM) {
-        this.BPM = BPM;
+    public List<NoteEntity> getNotes() {
+        return notes;
     }
 
-    public int getPitch() {
-        return pitch;
+    public int getBpm() {
+        return bpm;
     }
 
-    public void setPitch(int pitch) {
-        this.pitch = pitch;
+    public void setBpm(int bpm) {
+        this.bpm = bpm;
+    }
+
+    public int getClef() {
+        return clef;
+    }
+
+    public void setClef(int clef) {
+        this.clef = clef;
     }
 }

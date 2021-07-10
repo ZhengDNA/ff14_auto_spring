@@ -7,5 +7,11 @@ package ff14_auto.entity;
 
 public class NoteEntity {
     public int note;
+
     public int time;
+
+    public NoteEntity(int time, int note) {
+        this.note = note;
+        this.time = time;
+    }
 }
