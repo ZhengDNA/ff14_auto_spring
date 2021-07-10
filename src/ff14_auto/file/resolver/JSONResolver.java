@@ -1,6 +1,9 @@
 package ff14_auto.file.resolver;
 
+import ff14_auto.entity.MusicEntity;
 import org.springframework.stereotype.Component;
+
+import java.io.File;
 
 /**
  * @author : 陈征
@@ -8,5 +11,14 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class JSONResolver {
+public class JSONResolver implements FileResolver {
+    @Override
+    public boolean check(char firstChar) {
+        return firstChar == '[';
+    }
+
+    @Override
+    public MusicEntity resolve(File file) {
+        return null;
+    }
 }
