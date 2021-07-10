@@ -34,6 +34,7 @@ public class InitialResolver implements FileResolver {
             resolveBPM(scanner.nextLine());
             resolveNotes(scanner.nextLine());
         }
+        scanner.close();
     }
 
     private void resolveNotes(String str) {
