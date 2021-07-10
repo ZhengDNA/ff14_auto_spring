@@ -5,5 +5,7 @@ package ff14_auto.entity;
  * @date : 2021-07-02 19:36
  */
 
-public class NodeEntity {
+public class NoteEntity {
+    public int note;
+    public int time;
 }
