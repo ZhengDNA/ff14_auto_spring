@@ -43,9 +43,9 @@ public class InitialResolver implements FileResolver {
         for (String noteStr : noteStrs) {
             // 音高偏移量
             int pitch;
-            int time = 0;
+            int time = musicEntity.getBpm();
             pitch = resolvePitch(noteStr.charAt(0));
-            for (char noteChar : noteStr.toCharArray()) {
+            for (char noteChar : noteStr.substring(1).toCharArray()) {
                 if (noteChar > '0' - 1 && noteChar < '8') {
                     musicEntity.addNote(new NoteEntity(20, musicEntity.getClef() + pitch));
                     pitch = resolvePitch(noteChar);
@@ -56,7 +56,7 @@ public class InitialResolver implements FileResolver {
                     pitch = res.get(1);
                 }
             }
-            musicEntity.addNote(new NoteEntity(time, pitch));
+            musicEntity.addNote(new NoteEntity(time, musicEntity.getClef() + pitch));
             multipleNoteCount = 0;
         }
     }
@@ -71,15 +71,11 @@ public class InitialResolver implements FileResolver {
             case 'A' -> clef += 9;
             case 'B' -> clef += 11;
         }
-        char ch = 0;
-        try {
-            ch = str.charAt(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        switch (ch) {
-            case '#' -> clef += 1;
-            case 'b' -> clef -= 1;
+        if (str.length() > 1) {
+            switch (str.charAt(1)) {
+                case '#' -> clef += 1;
+                case 'b' -> clef -= 1;
+            }
         }
         musicEntity.setClef(clef);
     }
@@ -104,7 +100,7 @@ public class InitialResolver implements FileResolver {
     }
 
     private List<Integer> resolveTime(char ch, int time, int pitch) {
-        int delay = 0;
+        int delay = 1;
         switch (ch) {
             //上升1个八度
             case '`' -> pitch += 12;

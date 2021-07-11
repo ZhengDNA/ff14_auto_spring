@@ -30,8 +30,12 @@ public class MusicEntity {
         return notes != null && notes.size() != 0;
     }
 
-    public void addNote(NoteEntity noteEntity){
+    public void addNote(NoteEntity noteEntity) {
         notes.add(noteEntity);
+    }
+
+    public int searchNote(NoteEntity noteEntity) {
+        return notes.indexOf(noteEntity);
     }
 
     public List<NoteEntity> getNotes() {

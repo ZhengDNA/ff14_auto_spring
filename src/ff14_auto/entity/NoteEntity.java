@@ -14,4 +14,12 @@ public class NoteEntity {
         this.note = note;
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "NoteEntity{" +
+                "note=" + note +
+                ", time=" + time +
+                '}';
+    }
 }

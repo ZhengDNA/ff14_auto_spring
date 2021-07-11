@@ -34,7 +34,7 @@ public class FileLoader {
             throw new FileEmptyException("文件为空! \n路径: " + file.getAbsolutePath());
         }
         char c = (char) reader.read();
-        while (c != ' ' && c != '\n') {
+        while (c == ' ' || c == '\n') {
             c = (char) reader.read();
         }
         for (FileResolver resolver : resolvers) {
