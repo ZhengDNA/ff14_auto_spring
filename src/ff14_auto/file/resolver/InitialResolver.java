@@ -28,6 +28,7 @@ public class InitialResolver implements FileResolver {
 
     @Override
     public void resolve(File file) throws IOException {
+        musicEntity.init();
         Scanner scanner = new Scanner(file);
         while (scanner.hasNext()) {
             resolveClef(scanner.nextLine());
