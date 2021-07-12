@@ -1,15 +1,12 @@
 package ff14_auto.file;
 
-import ff14_auto.entity.MusicEntity;
 import ff14_auto.exceptions.FileEmptyException;
 import ff14_auto.exceptions.NoMatchResolverException;
 import ff14_auto.file.resolver.FileResolver;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * @author : 陈征

@@ -2,6 +2,7 @@ package ff14_auto.file.resolver;
 
 import ff14_auto.entity.MusicEntity;
 import ff14_auto.entity.NoteEntity;
+import ff14_auto.exceptions.ResolveException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +28,7 @@ public class InitialResolver implements FileResolver {
     }
 
     @Override
-    public void resolve(File file) throws IOException {
+    public void resolve(File file) throws Exception {
         musicEntity.init();
         Scanner scanner = new Scanner(file);
         while (scanner.hasNext()) {
@@ -38,7 +39,7 @@ public class InitialResolver implements FileResolver {
         scanner.close();
     }
 
-    private void resolveNotes(String str) {
+    private void resolveNotes(String str) throws ResolveException {
         int multipleNoteCount = 0;
         final String[] noteStrs = str.split(" ");
         for (String noteStr : noteStrs) {
@@ -48,6 +49,9 @@ public class InitialResolver implements FileResolver {
             pitch = resolvePitch(noteStr.charAt(0));
             for (char noteChar : noteStr.substring(1).toCharArray()) {
                 if (noteChar > '0' - 1 && noteChar < '8') {
+                    if (time != musicEntity.getBpm()) {
+                        throw new ResolveException("第 " + (musicEntity.getNotes().size() + 1) + " 个音符解析错误: " + noteStr);
+                    }
                     musicEntity.addNote(new NoteEntity(20, musicEntity.getClef() + pitch));
                     pitch = resolvePitch(noteChar);
                     multipleNoteCount += 1;
