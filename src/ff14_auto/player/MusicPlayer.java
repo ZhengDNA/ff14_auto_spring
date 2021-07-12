@@ -24,7 +24,7 @@ public class MusicPlayer extends Robot {
     @Autowired
     private MusicEntity musicEntity;
 
-    private final List<Character> keys = new ArrayList<Character>(Arrays.asList('Z', '1', 'X', '2', 'C', 'V', '3', 'B', '4', 'N', '5', 'M', 'A', '6', 'S', '7', 'D', 'F', '8', 'G', '9',
+    private final List<Character> keys = new ArrayList<>(Arrays.asList('Z', '1', 'X', '2', 'C', 'V', '3', 'B', '4', 'N', '5', 'M', 'A', '6', 'S', '7', 'D', 'F', '8', 'G', '9',
             'H', '0', 'J', 'Q', 'K', 'W', 'L', 'E', 'R', 'O', 'T', 'P', 'Y', (char) 188, 'U', 'I'));
 
     public MusicPlayer() throws AWTException {
