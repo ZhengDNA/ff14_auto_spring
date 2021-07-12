@@ -14,7 +14,7 @@ import java.util.List;
 public class MusicEntity {
     private List<NoteEntity> notes;
 
-    public static final int SLEEP = -1;
+    public static final int SLEEP = -100;
 
     public static final int BPM = 60000;
 
