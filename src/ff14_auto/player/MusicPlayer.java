@@ -44,5 +44,6 @@ public class MusicPlayer extends Robot {
             keyRelease(keys.get(note.note));
             FakeTime.wakeSleep(note.time / 8);
         }
+        System.out.println("弹奏完成。");
     }
 }
