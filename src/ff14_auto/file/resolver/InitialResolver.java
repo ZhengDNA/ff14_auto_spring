@@ -65,17 +65,33 @@ public class InitialResolver implements FileResolver {
     private void resolveClef(String str) {
         int clef = 12;
         switch (str.charAt(0)) {
-            case 'D' -> clef += 2;
-            case 'E' -> clef += 4;
-            case 'F' -> clef += 5;
-            case 'G' -> clef += 7;
-            case 'A' -> clef += 9;
-            case 'B' -> clef += 11;
+            case 'D':
+                clef += 2;
+                break;
+            case 'E':
+                clef += 4;
+                break;
+            case 'F':
+                clef += 5;
+                break;
+            case 'G':
+                clef += 7;
+                break;
+            case 'A':
+                clef += 9;
+                break;
+            case 'B':
+                clef += 11;
+                break;
         }
         if (str.length() > 1) {
             switch (str.charAt(1)) {
-                case '#' -> clef += 1;
-                case 'b' -> clef -= 1;
+                case '#':
+                    clef += 1;
+                    break;
+                case 'b':
+                    clef -= 1;
+                    break;
             }
         }
         musicEntity.setClef(clef);
@@ -88,14 +104,30 @@ public class InitialResolver implements FileResolver {
     private int resolvePitch(char ch) {
         int res = 0;
         switch (ch) {
-            case '1' -> res += 0;
-            case '2' -> res += 2;
-            case '3' -> res += 4;
-            case '4' -> res += 5;
-            case '5' -> res += 7;
-            case '6' -> res += 9;
-            case '7' -> res += 11;
-            default -> res = MusicEntity.SLEEP;
+            case '1':
+                res += 0;
+                break;
+            case '2':
+                res += 2;
+                break;
+            case '3':
+                res += 4;
+                break;
+            case '4':
+                res += 5;
+                break;
+            case '5':
+                res += 7;
+                break;
+            case '6':
+                res += 9;
+                break;
+            case '7':
+                res += 11;
+                break;
+            default:
+                res = MusicEntity.SLEEP;
+                break;
         }
         return res;
     }
@@ -104,21 +136,33 @@ public class InitialResolver implements FileResolver {
         int delay = 1;
         switch (ch) {
             //上升1个八度
-            case '`' -> pitch += 12;
+            case '`':
+                pitch += 12;
+                break;
             //下降一个八度
-            case '.' -> pitch -= 12;
-            case '_' -> {
-                time /= 2;
+            case '.':
+                pitch -= 12;
+                break;
+            case '_':
+                time /= 2; //时值减半（初始为四分音符的时值）
                 delay += 1;
-            }    //时值减半（初始为四分音符的时值）
+                break;
             //时值加一个四分音符的时值
-            case '-' -> time += musicEntity.getBpm();
+            case '-':
+                time += musicEntity.getBpm();
+                break;
             //升号
-            case '#' -> pitch += 1;
+            case '#':
+                pitch += 1;
+                break;
             //降号
-            case 'b' -> pitch -= 1;
+            case 'b':
+                pitch -= 1;
+                break;
             //附点音符
-            case ':' -> time += musicEntity.getBpm() / (2 * delay);
+            case ':':
+                time += musicEntity.getBpm() / (2 * delay);
+                break;
         }
         List<Integer> res = new ArrayList<>();
         res.add(time);
