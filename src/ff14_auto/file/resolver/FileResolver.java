@@ -1,6 +1,9 @@
 package ff14_auto.file.resolver;
 
 
+import ff14_auto.entity.MusicEntity;
+import ff14_auto.util.SpringContextUtil;
+
 import java.io.File;
 
 /**
@@ -9,6 +12,7 @@ import java.io.File;
  */
 
 public interface FileResolver {
+    MusicEntity musicEntity = SpringContextUtil.getContext().getBean("musicEntity", MusicEntity.class);
 
     boolean check(char firstChar);
 

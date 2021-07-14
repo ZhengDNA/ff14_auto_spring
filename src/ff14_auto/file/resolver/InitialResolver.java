@@ -3,11 +3,9 @@ package ff14_auto.file.resolver;
 import ff14_auto.entity.MusicEntity;
 import ff14_auto.entity.NoteEntity;
 import ff14_auto.exceptions.ResolveException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,8 +17,8 @@ import java.util.Scanner;
 
 @Component
 public class InitialResolver implements FileResolver {
-    @Autowired
-    private MusicEntity musicEntity;
+//    @Autowired
+//    private MusicEntity musicEntity;
 
     @Override
     public boolean check(char firstChar) {

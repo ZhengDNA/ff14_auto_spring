@@ -4,7 +4,9 @@ import ff14_auto.entity.MusicEntity;
 import ff14_auto.entity.NoteEntity;
 import ff14_auto.exceptions.MusicNotReadyException;
 import ff14_auto.util.FakeTime;
+import ff14_auto.util.SpringContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.awt.*;
