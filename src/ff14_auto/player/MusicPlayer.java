@@ -35,6 +35,7 @@ public class MusicPlayer extends Robot {
         if (!musicEntity.ready()) {
             throw new MusicNotReadyException("MusicEntity 异常!");
         }
+        System.out.println("开始弹奏");
         for (NoteEntity note : musicEntity.getNotes()) {
             try {
                 keyPress(keys.get(note.note));
