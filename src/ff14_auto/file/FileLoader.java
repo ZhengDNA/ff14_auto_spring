@@ -21,7 +21,7 @@ public class FileLoader {
         this.resolvers = resolvers;
     }
 
-    public void load(String path) throws Exception {
+    public boolean load(String path) throws Exception {
         File file = new File(path);
         if (!file.exists()) {
             throw new FileNotFoundException("文件未找到! \n路径: " + file.getAbsolutePath());
@@ -36,8 +36,7 @@ public class FileLoader {
         }
         for (FileResolver resolver : resolvers) {
             if (resolver.check(c)) {
-                resolver.resolve(file);
-                return;
+                return resolver.resolve(file);
             }
         }
         throw new NoMatchResolverException("没有匹配的解析器! \n路径: " + file.getAbsolutePath());

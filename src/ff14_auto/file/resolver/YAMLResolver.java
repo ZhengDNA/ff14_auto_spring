@@ -18,6 +18,7 @@ public class YAMLResolver implements FileResolver {
     }
 
     @Override
-    public void resolve(File file) {
+    public boolean resolve(File file) {
+        return false;
     }
 }

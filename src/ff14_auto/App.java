@@ -5,6 +5,7 @@ import ff14_auto.file.FileLoader;
 import ff14_auto.file.resolver.FileResolver;
 import ff14_auto.player.MusicPlayer;
 import ff14_auto.util.FakeTime;
+import ff14_auto.util.ResolveUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -47,11 +48,15 @@ public class App {
     public void run() throws IOException {
         Scanner input = new Scanner(System.in);
         while (true) {
-//            Runtime.getRuntime().exec("cls");
             System.out.print("输入文件路径: ");
             final String path = input.nextLine();
             try {
-                fileLoader.load(path);
+                if (fileLoader.load(path)) {
+                    System.out.print("有音符超出最高按键范围，是否把音符限制在最高按键范围内? (yes/no): ");
+                    if ("yes".equals(input.nextLine())) {
+                        ResolveUtil.limitNotes();
+                    }
+                }
                 FakeTime.count(5, true);
                 musicPlayer.play();
             } catch (Exception e) {

@@ -22,8 +22,15 @@ public class MusicEntity {
 
     private int clef;
 
+    private int out;
+
     public void init() {
         notes = new ArrayList<>();
+        out = 0;
+    }
+
+    public boolean hasOut() {
+        return out > 0;
     }
 
     public boolean ready() {
@@ -32,10 +39,6 @@ public class MusicEntity {
 
     public void addNote(NoteEntity noteEntity) {
         notes.add(noteEntity);
-    }
-
-    public int searchNote(NoteEntity noteEntity) {
-        return notes.indexOf(noteEntity);
     }
 
     public List<NoteEntity> getNotes() {
@@ -56,5 +59,13 @@ public class MusicEntity {
 
     public void setClef(int clef) {
         this.clef = clef;
+    }
+
+    public int getOut() {
+        return out;
+    }
+
+    public void setOut(int out) {
+        this.out = out;
     }
 }

@@ -3,6 +3,7 @@ package ff14_auto.util;
 import ff14_auto.entity.MusicEntity;
 import ff14_auto.entity.NoteEntity;
 import ff14_auto.exceptions.ResolveException;
+import ff14_auto.player.MusicPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  */
 
 public class ResolveUtil {
-    public static MusicEntity musicEntity = SpringContextUtil.getContext().getBean("musicEntity", MusicEntity.class);
+    private static final MusicEntity musicEntity = SpringContextUtil.getContext().getBean("musicEntity", MusicEntity.class);
 
     /**
      * @return [int time, int pitch, int multipleNoteCount]
@@ -27,6 +28,8 @@ public class ResolveUtil {
                     throw new ResolveException("第 " + (musicEntity.getNotes().size() + 1) + " 个音符解析错误: " + noteStr);
                 }
                 musicEntity.addNote(new NoteEntity(20, musicEntity.getClef() + pitch));
+                int out = musicEntity.getClef() + pitch + 1 - MusicPlayer.keyNum;
+                musicEntity.setOut(Math.max(out, musicEntity.getOut()));
                 pitch = resolvePitch(noteChar);
                 multipleNoteCount += 1;
             } else {
@@ -151,5 +154,12 @@ public class ResolveUtil {
         res.add(time);
         res.add(pitch);
         return res;
+    }
+
+    public static void limitNotes() {
+        for (NoteEntity note : musicEntity.getNotes()) {
+            note.note -= musicEntity.getOut();
+        }
+        System.out.println("已把音符限制在按键范围内。");
     }
 }

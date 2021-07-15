@@ -16,5 +16,8 @@ public interface FileResolver {
 
     boolean check(char firstChar);
 
-    void resolve(File file) throws Exception;
+    /**
+     * @return 返回乐曲是否超过FF14音域的上限
+     */
+    boolean resolve(File file) throws Exception;
 }

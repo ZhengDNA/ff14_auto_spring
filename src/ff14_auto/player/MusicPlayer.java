@@ -28,6 +28,8 @@ public class MusicPlayer extends Robot {
     private final List<Character> keys = new ArrayList<>(Arrays.asList('Z', '1', 'X', '2', 'C', 'V', '3', 'B', '4', 'N', '5', 'M', 'A', '6', 'S', '7', 'D', 'F', '8', 'G', '9',
             'H', '0', 'J', 'Q', 'K', 'W', 'L', 'E', 'R', 'O', 'T', 'P', 'Y', (char) 188, 'U', 'I'));
 
+    public static final int keyNum = 37;
+
     public MusicPlayer() throws AWTException {
     }
 

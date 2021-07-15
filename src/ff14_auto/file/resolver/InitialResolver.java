@@ -1,13 +1,12 @@
 package ff14_auto.file.resolver;
 
-import ff14_auto.entity.MusicEntity;
 import ff14_auto.entity.NoteEntity;
 import ff14_auto.exceptions.ResolveException;
+import ff14_auto.player.MusicPlayer;
 import ff14_auto.util.ResolveUtil;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,16 +17,13 @@ import java.util.Scanner;
 
 @Component
 public class InitialResolver implements FileResolver {
-//    @Autowired
-//    private MusicEntity musicEntity;
-
     @Override
     public boolean check(char firstChar) {
         return firstChar < 'H' && firstChar > 'A' - 1;
     }
 
     @Override
-    public void resolve(File file) throws Exception {
+    public boolean resolve(File file) throws Exception {
         musicEntity.init();
         Scanner scanner = new Scanner(file);
         while (scanner.hasNext()) {
@@ -36,6 +32,7 @@ public class InitialResolver implements FileResolver {
             resolveNotes(scanner.nextLine());
         }
         scanner.close();
+        return musicEntity.hasOut();
     }
 
 
@@ -47,6 +44,8 @@ public class InitialResolver implements FileResolver {
             int pitch = res.get(1);
             int multipleNoteCount = res.get(2);
             musicEntity.addNote(new NoteEntity(time - multipleNoteCount * 20 > 20 ? time - multipleNoteCount : time, musicEntity.getClef() + pitch));
+            int out = musicEntity.getClef() + pitch + 1 - MusicPlayer.keyNum;
+            musicEntity.setOut(Math.max(out, musicEntity.getOut()));
         }
     }
 }
