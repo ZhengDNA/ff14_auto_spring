@@ -1,5 +1,6 @@
 package ff14_auto.entity;
 
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
  * @date : 2021-07-02 19:36
  */
 
+@Data
 @Component
 public class MusicEntity {
     private List<NoteEntity> notes;
@@ -39,33 +41,5 @@ public class MusicEntity {
 
     public void addNote(NoteEntity noteEntity) {
         notes.add(noteEntity);
-    }
-
-    public List<NoteEntity> getNotes() {
-        return notes;
-    }
-
-    public int getBpm() {
-        return bpm;
-    }
-
-    public void setBpm(int bpm) {
-        this.bpm = bpm;
-    }
-
-    public int getClef() {
-        return clef;
-    }
-
-    public void setClef(int clef) {
-        this.clef = clef;
-    }
-
-    public int getOut() {
-        return out;
-    }
-
-    public void setOut(int out) {
-        this.out = out;
     }
 }

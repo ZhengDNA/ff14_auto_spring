@@ -29,23 +29,9 @@ public class InitialResolver implements FileResolver {
         while (scanner.hasNext()) {
             ResolveUtil.resolveClef(scanner.nextLine());
             ResolveUtil.resolveBPM(scanner.nextLine());
-            resolveNotes(scanner.nextLine());
+            ResolveUtil.resolveNotes(scanner.nextLine());
         }
         scanner.close();
         return musicEntity.hasOut();
-    }
-
-
-    public void resolveNotes(String notes) throws ResolveException {
-        final String[] noteStrs = notes.split(" ");
-        for (String noteStr : noteStrs) {
-            final List<Integer> res = ResolveUtil.resolveNote(noteStr, musicEntity.getBpm());
-            int time = res.get(0);
-            int pitch = res.get(1);
-            int multipleNoteCount = res.get(2);
-            musicEntity.addNote(new NoteEntity(time - multipleNoteCount * 20 > 20 ? time - multipleNoteCount : time, musicEntity.getClef() + pitch));
-            int out = musicEntity.getClef() + pitch + 1 - MusicPlayer.keyNum;
-            musicEntity.setOut(Math.max(out, musicEntity.getOut()));
-        }
     }
 }
