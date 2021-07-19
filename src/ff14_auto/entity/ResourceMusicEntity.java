@@ -12,13 +12,13 @@ import java.util.List;
 
 @Data
 @Component
-public class JSONMusicEntity {
+public class ResourceMusicEntity {
     private int bpm;
 
     private String clef;
 
     private List<String> notes;
 
-    public JSONMusicEntity() {
+    public ResourceMusicEntity() {
     }
 }
