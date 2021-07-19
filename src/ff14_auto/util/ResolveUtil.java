@@ -19,7 +19,8 @@ public class ResolveUtil {
     /**
      * @return [int time, int pitch, int multipleNoteCount]
      */
-    public static List<Integer> resolveNote(String noteStr, int time) throws ResolveException {
+    public static void resolveNote(String noteStr) throws ResolveException {
+        int time = musicEntity.getBpm();
         int multipleNoteCount = 0;
         int pitch = resolvePitch(noteStr.charAt(0));
         for (char noteChar : noteStr.substring(1).toCharArray()) {
@@ -38,11 +39,22 @@ public class ResolveUtil {
                 pitch = res.get(1);
             }
         }
-        List<Integer> res = new ArrayList<>();
-        res.add(time);
-        res.add(pitch);
-        res.add(multipleNoteCount);
-        return res;
+        musicEntity.addNote(new NoteEntity(time - multipleNoteCount * 20 > 20 ? time - multipleNoteCount : time, musicEntity.getClef() + pitch));
+        int out = musicEntity.getClef() + pitch + 1 - MusicPlayer.keyNum;
+        musicEntity.setOut(Math.max(out, musicEntity.getOut()));
+    }
+
+    static public void resolveNotes(String notes) throws ResolveException {
+        final String[] noteStrs = notes.split(" ");
+        for (String noteStr : noteStrs) {
+            resolveNote(noteStr);
+        }
+    }
+
+    static public void resolveNotes(List<String> notes) throws ResolveException {
+        for (String noteStr : notes) {
+            resolveNote(noteStr);
+        }
     }
 
     public static void resolveClef(String str) {
@@ -82,6 +94,10 @@ public class ResolveUtil {
 
     public static void resolveBPM(String str) {
         musicEntity.setBpm(MusicEntity.BPM / Integer.parseInt(str));
+    }
+
+    public static void resolveBPM(int bpm) {
+        musicEntity.setBpm(MusicEntity.BPM / bpm);
     }
 
     public static int resolvePitch(char ch) {
