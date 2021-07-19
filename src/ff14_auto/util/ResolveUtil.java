@@ -2,6 +2,7 @@ package ff14_auto.util;
 
 import ff14_auto.entity.MusicEntity;
 import ff14_auto.entity.NoteEntity;
+import ff14_auto.entity.ResourceMusicEntity;
 import ff14_auto.exceptions.ResolveException;
 import ff14_auto.player.MusicPlayer;
 
@@ -55,6 +56,12 @@ public class ResolveUtil {
         for (String noteStr : notes) {
             resolveNote(noteStr);
         }
+    }
+
+    static public void resolveNotes(ResourceMusicEntity entity) throws ResolveException {
+        resolveBPM(entity.getBpm());
+        resolveClef(entity.getClef());
+        resolveNotes(entity.getNotes());
     }
 
     public static void resolveClef(String str) {

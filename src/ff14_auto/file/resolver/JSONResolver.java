@@ -1,11 +1,9 @@
 package ff14_auto.file.resolver;
 
 import com.alibaba.fastjson.JSON;
-import ff14_auto.entity.JSONMusicEntity;
-import ff14_auto.entity.NoteEntity;
+import ff14_auto.entity.ResourceMusicEntity;
 import ff14_auto.exceptions.ResolveException;
 import ff14_auto.util.ResolveUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -33,11 +31,9 @@ public class JSONResolver implements FileResolver {
         while (scanner.hasNext()) {
             jsonStr.append(scanner.nextLine());
         }
-        List<JSONMusicEntity> jsonMusicEntities = JSON.parseArray(jsonStr.toString(), JSONMusicEntity.class);
-        for (JSONMusicEntity jsonMusicEntity : jsonMusicEntities) {
-            ResolveUtil.resolveBPM(jsonMusicEntity.getBpm());
-            ResolveUtil.resolveClef(jsonMusicEntity.getClef());
-            ResolveUtil.resolveNotes(jsonMusicEntity.getNotes());
+        List<ResourceMusicEntity> jsonMusicEntities = JSON.parseArray(jsonStr.toString(), ResourceMusicEntity.class);
+        for (ResourceMusicEntity resourceMusicEntity : jsonMusicEntities) {
+            ResolveUtil.resolveNotes(resourceMusicEntity);
         }
         return musicEntity.hasOut();
     }

@@ -1,13 +1,9 @@
 package ff14_auto.file.resolver;
 
-import ff14_auto.entity.NoteEntity;
-import ff14_auto.exceptions.ResolveException;
-import ff14_auto.player.MusicPlayer;
 import ff14_auto.util.ResolveUtil;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.util.List;
 import java.util.Scanner;
 
 /**

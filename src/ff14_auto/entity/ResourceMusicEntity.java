@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : 陈征
@@ -20,5 +21,11 @@ public class ResourceMusicEntity {
     private List<String> notes;
 
     public ResourceMusicEntity() {
+    }
+
+    public ResourceMusicEntity(Map entity) {
+        bpm = (int) entity.get("bpm");
+        clef = (String) entity.get("clef");
+        notes = (List<String>) entity.get("notes");
     }
 }
