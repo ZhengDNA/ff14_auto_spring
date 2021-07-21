@@ -5,7 +5,7 @@ package ff14_auto.exceptions;
  * @date : 2021-07-10 16:41
  */
 
-public class NoMatchResolverException extends Exception{
+public class NoMatchResolverException extends BaseCustomException{
     public NoMatchResolverException(String msg) {
         super(msg);
     }

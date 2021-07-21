@@ -5,7 +5,7 @@ package ff14_auto.exceptions;
  * @date : 2021-07-10 16:40
  */
 
-public class FileEmptyException extends Exception {
+public class FileEmptyException extends BaseCustomException {
     public FileEmptyException(String msg) {
         super(msg);
     }

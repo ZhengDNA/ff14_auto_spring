@@ -5,7 +5,7 @@ package ff14_auto.exceptions;
  * @date : 2021-07-10 17:08
  */
 
-public class MusicNotReadyException extends Exception{
+public class MusicNotReadyException extends BaseCustomException{
     public MusicNotReadyException(String msg){
         super(msg);
     }

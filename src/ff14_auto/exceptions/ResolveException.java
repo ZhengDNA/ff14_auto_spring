@@ -5,7 +5,7 @@ package ff14_auto.exceptions;
  * @date : 2021-07-10 16:49
  */
 
-public class ResolveException extends Exception{
+public class ResolveException extends BaseCustomException{
     public ResolveException(String msg){
         super(msg);
     }
