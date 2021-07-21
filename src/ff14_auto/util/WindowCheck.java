@@ -6,7 +6,5 @@ package ff14_auto.util;
  */
 
 public class WindowCheck {
-    public static boolean isFF14Window(){
-        return false;
-    }
+    public native static boolean isFF14Window();
 }
