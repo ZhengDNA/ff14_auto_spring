@@ -1,10 +1,10 @@
 package ff14_auto;
 
 import ff14_auto.entity.MusicEntity;
+import ff14_auto.exceptions.BaseCustomException;
 import ff14_auto.file.FileLoader;
 import ff14_auto.file.resolver.FileResolver;
 import ff14_auto.player.MusicPlayer;
-import ff14_auto.util.FakeTime;
 import ff14_auto.util.ResolveUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -12,6 +12,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,8 @@ public class App {
         context.getBean("fileLoader", FileLoader.class).setResolvers(resolvers);
         // 初始化 MusicEntity
         context.getBean("musicEntity", MusicEntity.class).init();
+        // 加载运行库
+        System.load(new File("src" + File.separator + "ff14_auto.dll").getAbsolutePath());
         return context;
     }
 
@@ -57,11 +61,13 @@ public class App {
                         ResolveUtil.limitNotes();
                     }
                 }
-                FakeTime.count(5, true);
+//                FakeTime.count(5, true);
                 musicPlayer.play();
-            } catch (Exception e) {
+            } catch (BaseCustomException | FileNotFoundException e) {
                 System.out.println(e.getMessage());
+            } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("出现未知错误，请截图错误报告并联系开发者");
             } finally {
                 System.out.println();
             }
