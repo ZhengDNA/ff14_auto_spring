@@ -4,10 +4,10 @@ import ff14_auto.entity.MusicEntity;
 import ff14_auto.entity.NoteEntity;
 import ff14_auto.exceptions.MusicNotReadyException;
 import ff14_auto.util.FakeTime;
+import ff14_auto.util.WindowCheck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 @Component
-public class MusicPlayer extends Robot {
+public class MusicPlayer{
     @Autowired
     private MusicEntity musicEntity;
 
@@ -28,23 +28,25 @@ public class MusicPlayer extends Robot {
 
     public static final int keyNum = 37;
 
-    public MusicPlayer() throws AWTException {
-    }
-
     public void play() throws Exception {
         if (!musicEntity.ready()) {
             throw new MusicNotReadyException("MusicEntity 异常!");
         }
+        System.out.println("切换到最终幻想14后开始弹奏");
+        while (!WindowCheck.isFF14Window()){
+            Thread.sleep(100);
+        }
         System.out.println("开始弹奏");
+        FakeTime.wakeSleep(100);
         for (NoteEntity note : musicEntity.getNotes()) {
             try {
-                keyPress(keys.get(note.note));
+                NativeMusicPlayer.press(keys.get(note.note));
             } catch (Exception e) {
                 FakeTime.wakeSleep(note.time);
                 continue;
             }
             FakeTime.wakeSleep(note.time / 8 * 7);
-            keyRelease(keys.get(note.note));
+            NativeMusicPlayer.release(keys.get(note.note));
             FakeTime.wakeSleep(note.time / 8);
         }
         System.out.println("弹奏完成。");
