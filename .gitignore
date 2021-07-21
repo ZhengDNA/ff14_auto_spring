@@ -2,3 +2,9 @@
 /.commit-template.json
 /test.txt
 /out/
+/src/libff14_auto.a
+/src/libff14_auto.def
+/src/Makefile.win
+/src/ff14_auto_util_WindowCheck.h.gch
+/src/ff14_auto.layout
+/src/dllmain.o
