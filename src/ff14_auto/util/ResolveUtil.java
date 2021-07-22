@@ -17,9 +17,6 @@ import java.util.List;
 public class ResolveUtil {
     private static final MusicEntity musicEntity = SpringContextUtil.getContext().getBean("musicEntity", MusicEntity.class);
 
-    /**
-     * @return [int time, int pitch, int multipleNoteCount]
-     */
     public static void resolveNote(String noteStr) throws ResolveException {
         if (noteStr.length()==0){
             throw new ResolveException("出现多余的空格！");
@@ -27,6 +24,7 @@ public class ResolveUtil {
         int time = musicEntity.getBpm();
         int multipleNoteCount = 0;
         int pitch = resolvePitch(noteStr.charAt(0));
+        int delay=1;
         for (char noteChar : noteStr.substring(1).toCharArray()) {
             if (noteChar > '0' - 1 && noteChar < '8') {
                 if (time != musicEntity.getBpm()) {
@@ -38,9 +36,10 @@ public class ResolveUtil {
                 pitch = resolvePitch(noteChar);
                 multipleNoteCount += 1;
             } else {
-                List<Integer> res = resolveTime(noteChar, time, pitch);
+                List<Integer> res = resolveTime(noteChar, time, pitch, delay);
                 time = res.get(0);
                 pitch = res.get(1);
+                delay = res.get(2);
             }
         }
         musicEntity.addNote(new NoteEntity(time - multipleNoteCount * 20 > 20 ? time - multipleNoteCount : time, musicEntity.getClef() + pitch));
@@ -142,10 +141,9 @@ public class ResolveUtil {
     }
 
     /**
-     * @return [int time, int pitch]
+     * @return [int time, int pitch, int delay]
      */
-    public static List<Integer> resolveTime(char ch, int time, int pitch) {
-        int delay = 1;
+    public static List<Integer> resolveTime(char ch, int time, int pitch, int delay) {
         switch (ch) {
             //上升1个八度
             case '`':
@@ -179,6 +177,7 @@ public class ResolveUtil {
         List<Integer> res = new ArrayList<>();
         res.add(time);
         res.add(pitch);
+        res.add(delay);
         return res;
     }
 
