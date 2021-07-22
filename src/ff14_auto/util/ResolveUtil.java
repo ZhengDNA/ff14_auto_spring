@@ -21,6 +21,9 @@ public class ResolveUtil {
      * @return [int time, int pitch, int multipleNoteCount]
      */
     public static void resolveNote(String noteStr) throws ResolveException {
+        if (noteStr.length()==0){
+            throw new ResolveException("出现多余的空格！");
+        }
         int time = musicEntity.getBpm();
         int multipleNoteCount = 0;
         int pitch = resolvePitch(noteStr.charAt(0));
