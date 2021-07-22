@@ -7,6 +7,8 @@ Spring 重构 C语言版的 ff14_auto
 
 C++编译动态链接库用的 IDE 是 DEV C++。
 
+用 exe4j 打包成了 exe 文件。要注意的是，src 文件夹要和主程序同级，还有主程序要以管理员身份运行。
+
 ### JSON 示例
 
 ```json
