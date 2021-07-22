@@ -27,6 +27,7 @@ public class YAMLResolver implements FileResolver {
 
     @Override
     public boolean resolve(File file) throws FileNotFoundException, ResolveException {
+        musicEntity.init();
         Yaml yaml = new Yaml();
         List<Map> entities = yaml.load(new FileInputStream(file));
         for (Map entity : entities) {

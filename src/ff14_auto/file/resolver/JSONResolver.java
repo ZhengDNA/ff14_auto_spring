@@ -26,6 +26,7 @@ public class JSONResolver implements FileResolver {
 
     @Override
     public boolean resolve(File file) throws FileNotFoundException, ResolveException {
+        musicEntity.init();
         final Scanner scanner = new Scanner(new FileInputStream(file));
         StringBuilder jsonStr = new StringBuilder();
         while (scanner.hasNext()) {
