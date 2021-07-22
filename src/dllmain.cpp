@@ -8,7 +8,7 @@ BYTE scan_code(DWORD pKey)
     const DWORD res = MapVirtualKey(pKey, MAPVK_VK_TO_VSC);
     return static_cast<BYTE>(res);
 }
-
+// 检测当前活动窗口是否为FF14 
 JNIEXPORT jboolean JNICALL Java_ff14_1auto_util_WindowCheck_isFF14Window(JNIEnv *env, jclass cls)
 {
 	HWND hwnd = GetForegroundWindow();
@@ -19,12 +19,12 @@ JNIEXPORT jboolean JNICALL Java_ff14_1auto_util_WindowCheck_isFF14Window(JNIEnv 
         return 1;
     return 0;
 }
-
+// 按下按键 
 JNIEXPORT void JNICALL Java_ff14_1auto_player_NativeMusicPlayer_press(JNIEnv *env, jclass cls, jchar keycode)
 {
 	keybd_event(keycode, scan_code(keycode), 0, 0);
 }
-
+// 松开按键 
 JNIEXPORT void JNICALL Java_ff14_1auto_player_NativeMusicPlayer_release(JNIEnv *env, jclass cls, jchar keycode)
 {
 	keybd_event(keycode, scan_code(keycode), 2, 0);
