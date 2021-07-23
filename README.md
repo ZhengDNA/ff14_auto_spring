@@ -65,3 +65,5 @@ C++编译动态链接库用的 IDE 是 DEV C++。
 
 ```
 手写的话，相比原格式和JSON，我更推荐写YAML。VS Code 装一个yaml插件就能自动缩进，自动补全 ‘-’，写起来非常舒服。
+
+关于曲谱的更多信息请看 <a href="https://github.com/ChenzDNA/ff14_auto">ChenzDNA/ff14_auto</a>
