@@ -11,6 +11,14 @@ C++编译动态链接库用的 IDE 是 DEV C++。
 
 需要 Java11 运行环境，下载 jdk11，把里面的东西(和 bin 文件夹同级的东西)都放到 C:/jdk11 就行，不需要修改环境变量。
 
+### 运行
+
+确保 JDK 版本 >= 11。
+
+解压 release 里的 zip 文件，运行命令：
+
+`java -jar ff14-auto-spring.jar`
+
 ### JSON 示例
 
 ```json
